@@ -15,10 +15,10 @@
 void	*ft_memchr(const void *str, int c, size_t n)
 {
 	unsigned int	cc;
-	char			*s;
+	unsigned char	*s;
 
 	cc = 0;
-	s = (char *)str;
+	s = (unsigned char *)str;
 	while (cc < n)
 	{
 		if (s[cc] == (unsigned char)c)
