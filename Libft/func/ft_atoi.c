@@ -6,13 +6,13 @@
 /*   By: dmangola <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:13:24 by dmangola          #+#    #+#             */
-/*   Updated: 2021/01/12 15:21:43 by dmangola         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:52:07 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	num;
 	int	n_p;
@@ -24,8 +24,8 @@ int		ft_atoi(const char *str)
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-			n_p = -1;
-		n_p = +1;
+			n_p *= -1;
+		str++;
 	}
 	while (*str >= '0' && *str <= '9')
 	{

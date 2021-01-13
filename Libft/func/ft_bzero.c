@@ -20,6 +20,9 @@ void	bzero(void *s, size_t n)
 	i = 0;
 	c = (char *)s;
 	while (i < n)
-		c[i++] = '0';
-	return (s);
+	{
+		c[i] = '0';
+		i++;
+	}
+	return ;
 }
