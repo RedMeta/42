@@ -6,7 +6,7 @@
 /*   By: dmangola <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:06:12 by dmangola          #+#    #+#             */
-/*   Updated: 2021/01/14 11:55:38 by asinamet         ###   ########.fr       */
+/*   Updated: 2021/01/15 16:14:39 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	*ft_memchr(const void *str, int c, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strchr(const char *s, int c);
-char    *ft_strnstr(const char *haystack, const char *needle, size_t len);
+char	*ft_strrchr(const char *s, int c);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strdup(char *src);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
