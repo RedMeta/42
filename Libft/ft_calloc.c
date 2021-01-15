@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcpy.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmangola <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asinamet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 16:48:31 by dmangola          #+#    #+#             */
-/*   Updated: 2021/01/12 11:10:53 by dmangola         ###   ########.fr       */
+/*   Created: 2021/01/14 17:30:24 by asinamet          #+#    #+#             */
+/*   Updated: 2021/01/14 17:30:31 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned int i;
-	unsigned int j;
+	void	*res;
+	size_t	i;
 
 	i = 0;
-	j = 0;
-	if (!src || !dst)
-		return (0);
-	while (src[j] && j < dstsize - 1 && dstsize > 0)
+	if (count == 0 || size == 0)
 	{
-		dst[j] = src[j];
-		j++;
+		res = NULL;
+		return (res);
 	}
-	if (dstsize - j > 0)
-		dst[j] = '\0';
-	while (src[i])
+	res = (void *)malloc(size * count);
+	while (i <= count)
+	{
+		((char*)res)[i] = 0;
 		i++;
-	return (i);
+	}
+	return (res);
 }
