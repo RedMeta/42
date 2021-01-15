@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asinamet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 17:30:24 by asinamet          #+#    #+#             */
-/*   Updated: 2021/01/15 12:20:59 by asinamet         ###   ########.fr       */
+/*   Created: 2021/01/15 12:31:45 by asinamet          #+#    #+#             */
+/*   Updated: 2021/01/15 12:31:52 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
 {
-	char	*new;
+	size_t i;
 
-	if (!(new = malloc(size * count)))
-		return (NULL);
-	ft_bzero(new, count * size);
-	return (new);
+	i = 0;
+	while (*dst && i < dstsize)
+	{
+		++i;
+		++dst;
+	}
+	while (*src && i + 1 < dstsize)
+	{
+		*dst = *src;
+		++dst;
+		++src;
+		++i;
+	}
+	if (i < dstsize)
+		*dst = 0;
+	while (*src)
+	{
+		++i;
+		++src;
+	}
+	return (i);
 }
