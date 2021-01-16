@@ -6,7 +6,7 @@
 /*   By: asinamet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 15:33:06 by asinamet          #+#    #+#             */
-/*   Updated: 2021/01/16 15:33:09 by asinamet         ###   ########.fr       */
+/*   Updated: 2021/01/16 17:08:50 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	}
 	return (str);
 }
-	
