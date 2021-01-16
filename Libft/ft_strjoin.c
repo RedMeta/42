@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asinamet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 15:22:50 by asinamet          #+#    #+#             */
-/*   Updated: 2021/01/16 15:22:52 by asinamet         ###   ########.fr       */
+/*   Created: 2021/01/16 11:13:52 by asinamet          #+#    #+#             */
+/*   Updated: 2021/01/16 11:14:01 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char	*c;
-	unsigned int	i;
+	int		i;
+	int		lung1;
+	int		lung2;
+	char	*str;
 
-	i = 0;
-	c = (unsigned char *)s;
-	while (i < n)
+	if (s1 && s2)
 	{
-		c[i] = 0;
-		i++;
+		lung1 = ft_strlen(s1);
+		lung2 = ft_strlen(s2);
+		str = (char*)malloc(sizeof(char) * (lung1 + lung2 + 1));
+		if (str == NULL)
+			return (NULL);
+		i = -1;
+		while (s1[++i])
+			str[i] = s1[i];
+		i = -1;
+		while (s2[++i])
+		{
+			str[lung1] = s2[i];
+			lung1++;
+		}
+		str[lung1] = '\0';
+		return (str);
 	}
-	return ;
+	return (NULL);
 }
