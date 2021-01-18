@@ -6,7 +6,7 @@
 /*   By: asinamet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 14:58:44 by asinamet          #+#    #+#             */
-/*   Updated: 2021/01/17 14:58:47 by asinamet         ###   ########.fr       */
+/*   Updated: 2021/01/18 15:03:25 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef struct		s_list
 
 t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list				*ft_lstmap(t_list *lst,
+						void *(*f)(void *), void (*del)(void *));
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, char *src, size_t dstsize);

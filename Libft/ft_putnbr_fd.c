@@ -12,38 +12,26 @@
 
 #include "libft.h"
 
-int		n_to_p(int n)
-{
-	char s;
-
-	s = '-';
-	if (n < 0)
-	{
-		n = -n;
-		write(1, &s, 1);
-	}
-	return (n);
-}
-
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	c;
-	int		d;
-	int		r;
+	char c;
 
 	if (n == -2147483648)
 	{
 		write(fd, "-2147483648", 11);
 		return ;
 	}
-	n = n_to_p(n);
-	r = (n % (10));
-	d = (n / (10));
-	if (d != 0)
+	else if (n < 0)
 	{
-		ft_putnbr_fd(d, fd);
+		write(fd, "-", 1);
+		ft_putnbr_fd(n * -1, fd);
+		return ;
 	}
-	c = '0' + r;
-	write(fd, &c, 1);
-	return ;
+	else
+	{
+		if (n > 9)
+			ft_putnbr_fd(n / 10, fd);
+		c = (n % 10) + '0';
+		write(fd, &c, 1);
+	}
 }
