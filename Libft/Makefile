@@ -64,21 +64,21 @@ BONUS_OBJS = $(BONUS:.c=.o)
 HDRS = libft.h
 
 all: $(NAME)
-	@make clean
 
 $(NAME):
-	gcc -c -Wall -Wextra -Werror -I $(HDRS) $(SRC)
+	gcc -c -Wall -Wextra -Werror -I $(HDRS) $(SRC) 
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
 clean:
-	@/bin/rm -f $(OBJS) $(BONUS_OBJS)
+	/bin/rm -f $(OBJS)
 
 fclean: clean
-	@/bin/rm -f $(NAME) $(BONUS_OBJS)
+	/bin/rm -f $(NAME) $(BONUS_OBJS)
 
-re: @fclean all
+re: fclean all
 
 bonus:	$(OBJS) $(BONUS_OBJS)
-			ar rcs $(NAME) $(OBJ)S $(BONUS_OBJS)
+			ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 			ranlib $(NAME)
+
