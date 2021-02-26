@@ -16,22 +16,26 @@ SRC		= $(wildcard ./utils/*.c) ft_printf.c main.c
 
 OBJ		= $(SRC:.c=.o)
 CC		= gcc
-CFLAGS	= -c -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 HEADER	= ft_printf.h
 CLEAN	= rm -f
-
-all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rcs $@ $^
 
+all: $(NAME)
+
 %.o: %.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) -c $(CFLAGS) $^ -o $@
 
 clean:
 	$(CLEAN) $(OBJ)
 
 fclean:
-	$(CLEAN) $(OBJ) $(NAME)
+	$(CLEAN) $(OBJ) $(NAME) a.out
+
+main: $(NAME)
+
+	$(CC) $(CFLAGS) $(NAME) main.c
 
 re: fclean all

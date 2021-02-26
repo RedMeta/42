@@ -2,8 +2,6 @@
 
 int main()
 {
-	int res;
-	res = ft_printf("testiamo\n");
-	ft_putnbr_base(res, "0123456789");
+	ft_putnbr_base(ft_printf("fau---\n%%886481]]d\n"), "0123456789");
 	return 0;
 }

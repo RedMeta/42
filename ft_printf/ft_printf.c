@@ -12,27 +12,34 @@
 
 #include "ft_printf.h"
 
-void	ft_check_flags(char *str, va_list args)
+void	ft_check_flags(const char *str, va_list args)
 {
-	
+
+	s_flags	*p_flags;
+	p_flags = &flags;
+	flag_init(str, p_flags);
+	while (args)
+		break;
 }
 
 int		ft_printf(const char *input, ...)
 {
 	unsigned int	res;
+	unsigned int	c;
 	const char		*read;
 	va_list			args;
 	va_start(args, input);
 
-	res = 0;
+	res = c = 0;
 	read = input;
-	while (*read != '\0')
+	while (read[c] != '\0')
 	{
-		if (*read != '%')
+		if (read[c] != '%')
 		{
-			ft_putchar(*read++);
+			ft_putchar(read[c]);
 			res++;
 		}
+		c++;
 		else
 			ft_check_flags(read, args);
 	}
