@@ -49,8 +49,7 @@ void	flag_init(const char *str, s_flags* flags)
 	flags->s_width = 0;
 	flags->side = 0;
 	flags->dot = -1;
-	while (!ft_chrFnd(CONV_TYPES, str[c]) && str[c])
+	while (str[c] != '\0' && !ft_chrFnd(CONV_TYPES, str[c]))
 		c++;
 	flags->conv = str[c];
-	write(1, &flags->conv, 1);
 }

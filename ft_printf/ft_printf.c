@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_check_flags(const char *str, va_list args)
+void	ft_check_flags(const char *str, va_list args, int count)
 {
 
 	s_flags	*p_flags;
@@ -36,12 +36,11 @@ int		ft_printf(const char *input, ...)
 	{
 		if (read[c] != '%')
 		{
-			ft_putchar(read[c]);
+			ft_putchar(read[c++]);
 			res++;
 		}
-		c++;
 		else
-			ft_check_flags(read, args);
+			ft_check_flags(read + ++c, args, res);
 	}
 	va_end (args);
 	return res;

@@ -13,6 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # define CONV_TYPES "%cspdiuxX"
+# define CONV_FLAGS "-0.*"
 # include <unistd.h>
 # include <stdarg.h>
 
@@ -32,6 +33,7 @@ typedef	struct t_flags s_flags;
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	ft_putnbr_base(int n, char *base);
+void	ft_check_flags(const char *str, va_list args, int count)
 void	flag_init(const char *str, s_flags* flags);
 int		ft_chrFnd(const char *str, char c);
 int		ft_printf(const char *input, ...);
