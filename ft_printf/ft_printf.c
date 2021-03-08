@@ -18,7 +18,7 @@ void	ft_check_flags(const char *str, va_list args, int count)
 	s_flags	*p_flags;
 	p_flags = &flags;
 	flag_init(str, p_flags);
-	while (args)
+	while (args || count)
 		break;
 }
 
