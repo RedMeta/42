@@ -16,24 +16,27 @@
 # define CONV_FLAGS "-0.*"
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdbool.h>
+# include <stdio.h>
 
-struct t_flags
+struct s_flags
 {
 	char	conv;
-	char	fill;
-	int		side;
+	bool	flags[2];
+	int		prec;
 	int		s_width;
 	int		m_width;
 
-} flags;
+};
 
-typedef	struct t_flags s_flags;
+typedef	struct s_flags t_flags;
 
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	ft_putnbr_base(int n, char *base);
-void	ft_check_flags(const char *str, va_list args, int count);
-void	flag_init(const char *str, s_flags* flags);
+void	width_n_prec(const char *str, t_flags *flags, int max);
+int		ft_check_flags(const char *str, va_list args, int *count);
+int		flag_init(const char *str, t_flags* flags);
 int		ft_atoi(const char *str);
 int		ft_chrFnd(const char *str, char c);
 int		ft_printf(const char *input, ...);
