@@ -26,7 +26,6 @@ struct s_flags
 	int		prec;
 	int		s_width;
 	int		m_width;
-
 };
 
 typedef	struct s_flags t_flags;
@@ -34,8 +33,8 @@ typedef	struct s_flags t_flags;
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	ft_putnbr_base(int n, char *base);
-void	width_n_prec(const char *str, t_flags *flags, int max);
-int		ft_check_flags(const char *str, va_list args, int *count);
+bool	fnd_width_n_prec(const char *str, t_flags *flags,va_list *args, int max);
+int		ft_check_flags(const char *str, va_list *args, int *count);
 int		flag_init(const char *str, t_flags* flags);
 int		ft_atoi(const char *str);
 int		ft_chrFnd(const char *str, char c);

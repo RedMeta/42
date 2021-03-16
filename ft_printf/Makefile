@@ -12,7 +12,7 @@
 
 NAME	= libftprintf.a
 
-SRC		= $(wildcard ./utils/*.c) ft_printf.c main.c
+SRC		= $(wildcard ./utils/*.c) ft_printf.c
 
 OBJ		= $(SRC:.c=.o)
 CC		= gcc

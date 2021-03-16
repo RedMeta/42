@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-int		flag_init(const char *str, t_flags* flags)
+
+int		flag_init(const char *str, t_flags *flags)
 {
 	int		c;
 
@@ -35,29 +36,28 @@ int		flag_init(const char *str, t_flags* flags)
 	return c;
 }
 
-void	width_n_prec(const char *str, t_flags *flags, int max)
+bool	fnd_width_n_prec(const char *str, t_flags *flags, va_list *args, int max)			//---SETS WIDTH OR PREC
 {
 	bool	prec;
-	int		dot;
 	int		c;
 	int		num;
 
 	prec = false;
-	dot = c = -1;
-	while (c <= max)
+	c = -1;
+	while (++c <= max)
 	{
 		if (str[c] == '.')
 			prec = true;
-		else if (str[c] >= '1' && str[c] <= '9')
-		{
-			num = ft_atoi(str + c);
-		}
-		c++;
 	}
+	if (str[c] == '*')
+		num = va_arg(*args, int);
+	else if (str[c] >= '1' && str[c] <= '9')
+		num = ft_atoi(str + c);
 	if (prec)
 		flags->prec = num;
 	else
 	{
+		printf("%d", num);
 		if (num < 0)
 		{
 			num *= -1;
@@ -65,22 +65,30 @@ void	width_n_prec(const char *str, t_flags *flags, int max)
 		}
 		flags->s_width = num;
 	}
+	return (prec);
 }
 
-int		ft_check_flags(const char *str, va_list args, int *count)
+int		ft_check_flags(const char *str, va_list *args, int *count)			//---PARENT FLAG CHECKER AND ADJUST---
 {
 	int		skip;
 	t_flags	flags;
 
 	skip = 0;
 	skip = flag_init(str, &flags);
-	width_n_prec(str, &flags, skip);
+	if (!fnd_width_n_prec(str, &flags, args, skip))
+	{
+		while (*str == '.' || *str == flags.conv)
+			str++;
+		if (*str == '.')
+			fnd_width_n_prec(str, &flags, args, skip);
+	}
 	while (args || count)
 		break;
+	//printf("%d\n", flags.s_width);
 	return skip;
 }
 
-int		ft_printf(const char *input, ...)
+int		ft_printf(const char *input, ...)			//---INIT VARG AND CHECK INPUT---
 {
 	int	res;
 	int	c;
@@ -99,9 +107,9 @@ int		ft_printf(const char *input, ...)
 		}
 		else
 		{
-			c = ft_check_flags(read, args, &res);
+			c = ft_check_flags(read, &args, &res);
 			read = read + c;
-			printf("---%d---", c);
+			printf("---%d---", c);					//test jump
 		}
 		read++;
 	}
