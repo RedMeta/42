@@ -26,5 +26,6 @@ int	ft_atoi(const char *str)
 		nbr = nbr * 10 + *str - '0';
 		str++;
 	}
+//	printf ("\n&d\n", nbr);
 	return (nbr * sign);
 }

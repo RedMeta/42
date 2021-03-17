@@ -32,7 +32,7 @@ int		flag_init(const char *str, t_flags *flags)
 		c++;
 	}
 	flags->conv = str[c];
-//	write(1, &flags->conv, 1);				// TEST FOR CHECK FLAGS
+	write(1, &flags->conv, 1);				// TEST FOR CHECK FLAGS
 	return c;
 }
 
@@ -43,7 +43,7 @@ bool	fnd_width_n_prec(const char *str, t_flags *flags, va_list *args, int max)		
 	int		num;
 
 	prec = false;
-	c = -1;
+	num = c = -1;
 	while (++c <= max)
 	{
 		if (str[c] == '.')
@@ -53,11 +53,11 @@ bool	fnd_width_n_prec(const char *str, t_flags *flags, va_list *args, int max)		
 		num = va_arg(*args, int);
 	else if (str[c] >= '1' && str[c] <= '9')
 		num = ft_atoi(str + c);
+	printf("%d\n", flags->s_width);
 	if (prec)
 		flags->prec = num;
 	else
 	{
-		printf("%d", num);
 		if (num < 0)
 		{
 			num *= -1;
