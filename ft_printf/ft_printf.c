@@ -32,7 +32,6 @@ int		flag_init(const char *str, t_flags *flags)
 		c++;
 	}
 	flags->conv = str[c];
-	write(1, &flags->conv, 1);				// TEST FOR CHECK FLAGS
 	return c;
 }
 
@@ -44,7 +43,7 @@ bool	fnd_width_n_prec(const char *str, t_flags *flags, va_list *args, int max)		
 
 	prec = false;
 	num = c = -1;
-	while (++c <= max)
+	while (++c <= max && str[c] != '*' && !(str[c] >= '1' && str[c] <= '9'))
 	{
 		if (str[c] == '.')
 			prec = true;
@@ -53,14 +52,13 @@ bool	fnd_width_n_prec(const char *str, t_flags *flags, va_list *args, int max)		
 		num = va_arg(*args, int);
 	else if (str[c] >= '1' && str[c] <= '9')
 		num = ft_atoi(str + c);
-	printf("%d\n", flags->s_width);
-	if (prec)
+	if (prec && num)
 		flags->prec = num;
 	else
 	{
 		if (num < 0)
 		{
-			num *= -1;
+			num = num * -1;
 			flags->flags[1] = true;
 		}
 		flags->s_width = num;
@@ -71,20 +69,21 @@ bool	fnd_width_n_prec(const char *str, t_flags *flags, va_list *args, int max)		
 int		ft_check_flags(const char *str, va_list *args, int *count)			//---PARENT FLAG CHECKER AND ADJUST---
 {
 	int		skip;
+	int		c;
 	t_flags	flags;
 
 	skip = 0;
+	c = -1;
 	skip = flag_init(str, &flags);
 	if (!fnd_width_n_prec(str, &flags, args, skip))
 	{
-		while (*str == '.' || *str == flags.conv)
+		while (*str != '.' && *str != flags.conv)
 			str++;
 		if (*str == '.')
 			fnd_width_n_prec(str, &flags, args, skip);
 	}
 	while (args || count)
 		break;
-	//printf("%d\n", flags.s_width);
 	return skip;
 }
 

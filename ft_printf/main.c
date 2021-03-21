@@ -2,7 +2,7 @@
 
 int main()
 {
-	ft_putnbr_base(ft_printf("TestiamoUnPo\n---|%*x|---\nScritto n.", 42), "0123456789");
+	ft_putnbr_base(ft_printf("TestiamoUnPo\n---|%-13.975x|---\nScritto n.", -212, 21), "0123456789");
 	ft_putchar('\n');
 	return 0;
 }
