@@ -12,7 +12,6 @@
 
 #include "ft_printf.h"
 
-
 int		flag_init(const char *str, t_flags *flags)
 {
 	int		c;
@@ -82,6 +81,7 @@ int		ft_check_flags(const char *str, va_list *args, int *count)			//---PARENT FL
 		if (*str == '.')
 			fnd_width_n_prec(str, &flags, args, skip);
 	}
+	*count += put_select(&flags, args);
 	while (args || count)
 		break;
 	return skip;
@@ -108,7 +108,6 @@ int		ft_printf(const char *input, ...)			//---INIT VARG AND CHECK INPUT---
 		{
 			c = ft_check_flags(read, &args, &res);
 			read = read + c;
-			printf("---%d---", c);					//test jump
 		}
 		read++;
 	}

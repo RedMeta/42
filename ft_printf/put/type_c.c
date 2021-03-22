@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   num_utils.c                                        :+:      :+:    :+:   */
+/*   c_type.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asinamet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/21 14:04:00 by asinamet          #+#    #+#             */
-/*   Updated: 2021/03/21 14:04:01 by asinamet         ###   ########.fr       */
+/*   Created: 2021/03/21 14:03:40 by asinamet          #+#    #+#             */
+/*   Updated: 2021/03/21 14:03:42 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_atoi(const char *str)
+int	put_c(t_flags *flags, va_list *args)
 {
-	int	nbr;
-	int	sign;
+	char	res;
+	int		c;
 
-	nbr = 0;
-	sign = 1;
-	while (*str == ' ' || (*str > 8 && *str < 14))
-		str++;
-	while (*str == '+' || *str == '-')
+	flags->m_width = c = 1;
+	res = va_arg(*args, int);
+	if (flags->s_width > flags->m_width)
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (*str && (*str >= '0' && *str <= '9'))
-	{
-		if (nbr < 0)
+		c = flags->s_width;
+		if (flags->flags[1])
 		{
-			if (sign == 1)
-				return (-1);
-			return (0);
+			ft_putchar(res);
+			flags->s_width--;
 		}
-		nbr = nbr * 10 + *str - '0';
-		str++;
+		while (flags->s_width-- > 1)
+			ft_putchar(' ');
+		ft_putchar(flags->flags[1] ? ' ' : res);
 	}
-//	printf ("\n&d\n", nbr);
-	return (nbr * sign);
+	else
+		ft_putchar(res);
+	return (c);
 }
