@@ -29,7 +29,7 @@ int	put_c(t_flags *flags, va_list *args)
 		}
 		while (flags->s_width-- > 1)
 			ft_putchar(' ');
-		ft_putchar(flags->flags[1] ? ' ' : res);
+		ft_putchar((' ' * (flags->flags[1]) + res * !(flags->flags[1])));
 	}
 	else
 		ft_putchar(res);

@@ -29,7 +29,7 @@ int	put_perc(t_flags *flags, va_list *args)
 		}
 		while (flags->s_width-- > 1)
 			ft_putchar(space);
-		ft_putchar(flags->flags[1] ? space : '%');
+		ft_putchar(space * (flags->flags[1]) + '%' * !(flags->flags[1]));
 	}
 	else
 		ft_putchar('%');

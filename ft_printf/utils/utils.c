@@ -31,7 +31,7 @@ int		put_select(t_flags *flags, va_list *args)
 	int	(*put_func[10])(t_flags *, va_list *);
 
 	put_init(put_func);
-	res = put_func[ft_chrFnd(CONV_TYPES, flags->conv)](flags, args);
+	res = put_func[flags->conv](flags, args);
 	return res;
 }
 

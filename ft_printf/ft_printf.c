@@ -22,7 +22,7 @@ int		flag_init(const char *str, t_flags *flags)
 	flags->m_width = -1;
 	flags->s_width = -1;
 	flags->prec = -1;
-	while (str[c] != '\0' && ft_chrFnd(CONV_TYPES, str[c]) == -1)
+	while (str[c] != '\0' && (flags->conv = ft_chrFnd(CONV_TYPES, str[c])) == -1)
 	{
 		if (str[c] == '-')
 			flags->flags[1] = true;
@@ -30,7 +30,6 @@ int		flag_init(const char *str, t_flags *flags)
 			flags->flags[0] = true;
 		c++;
 	}
-	flags->conv = str[c];
 	return c;
 }
 
