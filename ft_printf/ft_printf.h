@@ -39,10 +39,12 @@ int		ft_atoi(const char *str);
 int		ft_chrFnd(const char *str, char c);
 int		ft_printf(const char *input, ...);
 int		put_select(t_flags *flags, va_list *args);
+size_t	ft_strlen(const char *s);
 
 //	print funcs
 
 int		put_perc(t_flags *flags, va_list *args);
 int		put_c(t_flags *flags, va_list *args);
+int		put_s(t_flags *flags, va_list *args);
 
 #endif

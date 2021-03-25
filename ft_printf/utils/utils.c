@@ -16,7 +16,7 @@ void	put_init(int (**func)(t_flags *, va_list *))
 {
 	func[0] = &put_perc;
 	func[1] = &put_c;
-//	func[2] = &put_s;
+	func[2] = &put_s;
 /*	func[3] = &put_p;
 	func[4] = &put_d;
 	func[5] = &put_i;			
@@ -33,22 +33,6 @@ int		put_select(t_flags *flags, va_list *args)
 	put_init(put_func);
 	res = put_func[flags->conv](flags, args);
 	return res;
-}
-
-void	ft_putstr(char *s)
-{
-	int i;
-
-	if (!s)
-		return ;
-	i = -1;
-	while (s[++i])
-		ft_putchar(s[i]);
-}
-
-void	ft_putchar(char c)
-{
-		write(1, &c, 1);
 }
 
 int		ft_chrFnd(const char *str, char c)

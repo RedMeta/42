@@ -9,11 +9,34 @@
 /*   Updated: 2021/03/24 15:04:35 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
+
 #include "../ft_printf.h"
 
 int		put_s(t_flags *flags, va_list *args)
 {
+	const char	*input;
+	bool		width;
+	int			i;
+	int			space;
 
+	i = 0;
+	input = va_arg(*args, const char *);
+	width = (flags->prec < 0 || flags->prec > (int )ft_strlen(input));
+	flags->m_width = (ft_strlen(input) * (width) + (flags->prec * !(width)));						//---m_width is the lenght of the input string considering prec
+	flags->s_width = flags->s_width * (flags->s_width >= flags->m_width)
+		+ flags->m_width * (flags->s_width < flags->m_width);
+	space = flags->s_width - flags->m_width;
+	if (!flags->flags[1] && space)
+	{
+		while (space--)
+			ft_putchar(' ');
+	}
+	while (i < flags->m_width)
+		ft_putchar(input[i++]);
+	if (flags->flags[1] && space)
+	{
+		while (space--)
+			ft_putchar(' ');
+	}
+	return (flags->s_width);
 }
-*/

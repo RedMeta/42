@@ -22,6 +22,7 @@ int		flag_init(const char *str, t_flags *flags)
 	flags->m_width = -1;
 	flags->s_width = -1;
 	flags->prec = -1;
+	flags->conv = -1;
 	while (str[c] != '\0' && (flags->conv = ft_chrFnd(CONV_TYPES, str[c])) == -1)
 	{
 		if (str[c] == '-')
@@ -96,7 +97,7 @@ int		ft_printf(const char *input, ...)			//---INIT VARG AND CHECK INPUT---
 
 	res = c = 0;
 	read = input;
-	while (*read != '\0')
+	while (*read)
 	{
 		if (*read != '%')
 		{

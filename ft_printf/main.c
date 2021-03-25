@@ -2,10 +2,9 @@
 
 int main()
 {
-/*	ft_putnbr_base(ft_printf("TestiamoUnPo\n---|%21c|---\nScritto n.", 'X'), "0123456789");
-	ft_putchar('\n');  */
-	int a = ft_printf("Test mio ---%4%---\n");
-	int b = printf("Test mio ---%4%---\n");
+	char *test = "daniele mangolino";
+	int a = ft_printf("Test mio ---%.0s---\n", test);
+	int b = printf("Test suo ---%.0s---\n", test);
 	printf("(%d // %d)", a, b);
-	return 0;
+	return 1;
 }
