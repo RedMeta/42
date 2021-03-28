@@ -15,14 +15,14 @@
 int		put_s(t_flags *flags, va_list *args)
 {
 	const char	*input;
-	bool		width;
+	bool		u_pre;
 	int			i;
 	int			space;
 
 	i = 0;
 	input = va_arg(*args, const char *);
-	width = (flags->prec < 0 || flags->prec > (int )ft_strlen(input));
-	flags->m_width = (ft_strlen(input) * (width) + (flags->prec * !(width)));						//---m_width is the lenght of the input string considering prec
+	u_pre = (flags->prec >= 0 && flags->prec <= (int )ft_strlen(input));
+	flags->m_width = (ft_strlen(input) * !(u_pre) + (flags->prec * (u_pre)));				//---m_width is the lenght of the input string considering prec
 	flags->s_width = flags->s_width * (flags->s_width >= flags->m_width)
 		+ flags->m_width * (flags->s_width < flags->m_width);
 	space = flags->s_width - flags->m_width;

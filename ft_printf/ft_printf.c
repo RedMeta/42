@@ -11,45 +11,43 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int		flag_init(const char *str, t_flags *flags)
 {
 	int		c;
 
-	c = 1;
+	c = 0;
 	flags->flags[0] = false;
 	flags->flags[1] = false;
 	flags->m_width = -1;
 	flags->s_width = -1;
 	flags->prec = -1;
 	flags->conv = -1;
-	while (str[c] != '\0' && (flags->conv = ft_chrFnd(CONV_TYPES, str[c])) == -1)
+	printf("+++%d+++", flags->conv);
+	while (ft_chrFnd(CONV_FLAGS, str[++c]) != -1 || ft_chrFnd("123456789", str[c] != -1))
 	{
 		if (str[c] == '-')
 			flags->flags[1] = true;
-		else if (str[c] == '0' && !(str[c - 1] > '0' && str[c - 1] <= '9'))
+		else if (!(str[c - 1] > '0' && str[c - 1] <= '9') && str[c] == '0')
 			flags->flags[0] = true;
-		c++;
+		flags->conv = ft_chrFnd(CONV_TYPES, str[c]);
 	}
+	if (flags->conv == -1)
+		c = -1;
 	return c;
 }
 
-bool	fnd_width_n_prec(const char *str, t_flags *flags, va_list *args, int max)			//---SETS WIDTH OR PREC
+bool	fnd_width_n_prec(const char *str, t_flags *flags, va_list *args, bool prec)			//---SETS WIDTH OR PREC
 {
-	bool	prec;
 	int		c;
 	int		num;
 
-	prec = false;
-	num = c = -1;
-	while (++c <= max && str[c] != '*' && !(str[c] >= '1' && str[c] <= '9'))
-	{
-		if (str[c] == '.')
-			prec = true;
-	}
+	num = -1;
+	c = 0;
 	if (str[c] == '*')
 		num = va_arg(*args, int);
-	else if (str[c] >= '1' && str[c] <= '9')
+	else if (str[c] >= '0' && str[c] <= '9')
 		num = ft_atoi(str + c);
 	if (prec && num)
 		flags->prec = num;
@@ -69,26 +67,30 @@ int		ft_check_flags(const char *str, va_list *args, int *count)			//---PARENT FL
 {
 	int		skip;
 	int		c;
+	bool	prec;
 	t_flags	flags;
 
-	skip = 0;
-	c = -1;
-	skip = flag_init(str, &flags);
-	if (!fnd_width_n_prec(str, &flags, args, skip))
+	skip = -1;
+	c = 0;
+	prec = false;
+	if ((skip = flag_init(str, &flags)) == -1)
+		return (0);
+	while (str[++c] != '\0' && !ft_isalpha((int) str[c]) && str[c] != '%' && !prec)
 	{
-		while (*str != '.' && *str != flags.conv)
-			str++;
-		if (*str == '.')
-			fnd_width_n_prec(str, &flags, args, skip);
+		if (str[c] == '.')
+		{
+			prec = true;
+			c++;
+		}
+		if (str[c] == '*' || (str[c] >= '0' && str[c] <= '9'))
+			fnd_width_n_prec((str + c), &flags, args, prec);
 	}
 	*count += put_select(&flags, args);
-	while (args || count)
-		break;
 	return skip;
 }
 
-int		ft_printf(const char *input, ...)			//---INIT VARG AND CHECK INPUT---
-{
+int		ft_printf(const char *input, ...)
+{														//---INIT VARG AND CHECK INPUT---
 	int	res;
 	int	c;
 	const char		*read;

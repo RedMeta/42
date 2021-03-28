@@ -36,6 +36,6 @@ fclean:
 
 main: $(NAME)
 
-	$(CC) $(CFLAGS) $(NAME) main.c
+	$(CC) $(CFLAGS) main.c $(NAME)
 
 re: fclean all

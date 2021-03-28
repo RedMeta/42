@@ -45,3 +45,10 @@ int		ft_chrFnd(const char *str, char c)
 		return (i);
 	return (-1);
 }
+
+bool	ft_isalpha(int c)
+{
+	if ((c > 64 && c < 91) || (c > 96 && c < 123))
+		return (true);
+	return (false);
+}
