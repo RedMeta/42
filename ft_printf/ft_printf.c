@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int		flag_init(const char *str, t_flags *flags)
 {
@@ -24,7 +23,6 @@ int		flag_init(const char *str, t_flags *flags)
 	flags->s_width = -1;
 	flags->prec = -1;
 	flags->conv = -1;
-	printf("+++%d+++", flags->conv);
 	while (ft_chrFnd(CONV_FLAGS, str[++c]) != -1 || ft_chrFnd("123456789", str[c] != -1))
 	{
 		if (str[c] == '-')
@@ -73,8 +71,9 @@ int		ft_check_flags(const char *str, va_list *args, int *count)			//---PARENT FL
 	skip = -1;
 	c = 0;
 	prec = false;
+	printf("+++%d+++", 21);
 	if ((skip = flag_init(str, &flags)) == -1)
-		return (0);
+		return (1);
 	while (str[++c] != '\0' && !ft_isalpha((int) str[c]) && str[c] != '%' && !prec)
 	{
 		if (str[c] == '.')
@@ -91,27 +90,24 @@ int		ft_check_flags(const char *str, va_list *args, int *count)			//---PARENT FL
 
 int		ft_printf(const char *input, ...)
 {														//---INIT VARG AND CHECK INPUT---
-	int	res;
-	int	c;
-	const char		*read;
-	va_list			args;
-	va_start(args, input);
+	int		res;
+	int		c;
+	va_list	args;
 
-	res = c = 0;
-	read = input;
-	while (*read)
+	va_start(args, input);
+	c = -1;
+	res = 0;
+	while (input[++c])
 	{
-		if (*read != '%')
+		if (input[c] != '%')
 		{
-			ft_putchar(*read);
+			ft_putchar(*(input + c));
 			res++;
 		}
 		else
 		{
-			c = ft_check_flags(read, &args, &res);
-			read = read + c;
+		c = c + ft_check_flags((input + c), &args, &res);
 		}
-		read++;
 	}
 	va_end (args);
 	return res;
