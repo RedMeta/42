@@ -10,29 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
-int	put_perc(t_flags *flags, va_list *args)
+int	put_c(t_flags *flags, va_list *args)
 {
+	char	res;
 	int		c;
-	char	space;
 
 	flags->m_width = c = 1;
-	space = (flags->flags[0] && !flags->flags[1]) ? '0': ' ';
+	res = (char)va_arg(*args, int);
 	if (flags->s_width > flags->m_width)
 	{
 		c = flags->s_width;
 		if (flags->flags[1])
 		{
-			ft_putchar('%');
+			ft_putchar(res);
 			flags->s_width--;
 		}
 		while (flags->s_width-- > 1)
-			ft_putchar(space);
-		ft_putchar(space * (flags->flags[1]) + '%' * !(flags->flags[1]));
+			ft_putchar(' ');
+		ft_putchar((' ' * (flags->flags[1]) + res * !(flags->flags[1])));
 	}
 	else
-		ft_putchar('%');
-	args += 0;
+		ft_putchar(res);
 	return (c);
 }

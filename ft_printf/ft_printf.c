@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int		flag_init(const char *str, t_flags *flags)
 {
@@ -24,16 +23,16 @@ int		flag_init(const char *str, t_flags *flags)
 	flags->s_width = -1;
 	flags->prec = -1;
 	flags->conv = -1;
-	while (ft_chrFnd(CONV_FLAGS, str[++c]) != -1 && ft_chrFnd("123456789", str[c] != -1))
+	while (ft_chrFnd(CONV_FLAGS, str[++c]) != -1 || ft_chrFnd("123456789", str[c]) != -1)
 	{
 		if (str[c] == '-')
 			flags->flags[1] = true;
 		else if (!(str[c - 1] > '0' && str[c - 1] <= '9') && str[c] == '0')
 			flags->flags[0] = true;
-		flags->conv = ft_chrFnd(CONV_TYPES, str[c]);
 	}
+ flags->conv = ft_chrFnd(CONV_TYPES, str[c]);
 	if (flags->conv == -1)
-		c = -1;
+		return -1;
 	return c;
 }
 
@@ -69,11 +68,11 @@ int		ft_check_flags(const char *str, va_list *args, int *count)			//---PARENT FL
 	bool	prec;
 	t_flags	flags;
 
-	skip = -1;
+	skip = 0;
 	c = 0;
 	prec = false;
 	if ((skip = flag_init(str, &flags)) == -1)
-		return (1);
+		return (0);
 	while (str[++c] != '\0' && !ft_isalpha((int) str[c]) && str[c] != '%' && !prec)
 	{
 		if (str[c] == '.')
@@ -84,6 +83,7 @@ int		ft_check_flags(const char *str, va_list *args, int *count)			//---PARENT FL
 		if (str[c] == '*' || (str[c] >= '0' && str[c] <= '9'))
 			fnd_width_n_prec((str + c), &flags, args, prec);
 	}
+   printf("###%d###", flags.s_width);
 	*count += put_select(&flags, args);
 	return skip;
 }
@@ -106,7 +106,7 @@ int		ft_printf(const char *input, ...)
 		}
 		else
 		{
-			printf("TEST");
+			
 			c1 = c1 + ft_check_flags((input + c1), &args, &res);
 		}
 	}
