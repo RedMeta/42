@@ -15,10 +15,13 @@
 int	put_perc(t_flags *flags, va_list *args)
 {
 	int		c;
+	bool	is_zero;
 	char	space;
 
-	flags->m_width = c = 1;
-	space = (flags->flags[0] && !flags->flags[1]) ? '0': ' ';
+	flags->m_width = 1;
+	c = 1;
+	is_zero = (flags->flags[0] && !flags->flags[1]);
+	space = '0' * (is_zero) + ' ' * !(is_zero);
 	if (flags->s_width > flags->m_width)
 	{
 		c = flags->s_width;

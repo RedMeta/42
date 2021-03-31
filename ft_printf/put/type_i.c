@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c_type.c                                           :+:      :+:    :+:   */
+/*   type_i.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asinamet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/21 14:03:40 by asinamet          #+#    #+#             */
-/*   Updated: 2021/03/21 14:03:42 by asinamet         ###   ########.fr       */
+/*   Created: 2021/03/31 16:13:40 by asinamet          #+#    #+#             */
+/*   Updated: 2021/03/31 16:13:42 by asinamet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	put_c(t_flags *flags, va_list *args)
+int	put_i(t_flags *flags, va_list *args)
 {
-	char	res;
+	char	*num;
 	int		c;
 
-	flags->m_width = 1;
-	c = 1;
-	res = va_arg(*args, int);
-	if (flags->s_width > flags->m_width)
-	{
-		c = flags->s_width;
-		if (flags->flags[1])
-		{
-			ft_putchar(res);
-			flags->s_width--;
-		}
-		while (flags->s_width-- > 1)
-			ft_putchar(' ');
-		ft_putchar((' ' * (flags->flags[1]) + res * !(flags->flags[1])));
-	}
-	else
-		ft_putchar(res);
-	return (c);
+	num = ft_itoa(va_arg(*args, int));
+	flags->m_width += 0;
+	args +=0;
+	return 1;
 }

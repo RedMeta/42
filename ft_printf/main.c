@@ -1,10 +1,10 @@
 #include "ft_printf.h"
 
-int main()
+int	main()
 {
-	char *test = "daniele mangolino";
-	int a = ft_printf("Test mio ---%.0s---\n", test);
-	int b = printf("Test suo ---%.0s---\n", test);
-	printf("(%d // %d)", a, b);
+	int test = 1234;
+	int a = ft_printf("Test mio ---%i---\n", test);
+	int b = printf("Test suo ---%i---\n", test);
+	printf("(%d // %d)", a, b); 
 	return 1;
 }

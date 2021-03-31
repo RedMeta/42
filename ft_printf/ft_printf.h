@@ -12,12 +12,13 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# define CONV_TYPES "%cspdiuxX"
+# define CONV_TYPES "%csidupxX"
 # define CONV_FLAGS "-0.*"
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 struct s_flags
 {
@@ -30,21 +31,23 @@ struct s_flags
 
 typedef	struct s_flags t_flags;
 
+size_t	ft_strlen(const char *s);
+char	*ft_itoa(int n);
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
-bool	fnd_width_n_prec(const char *str, t_flags *flags,va_list *args, int max);
+void	fnd_width_n_prec(const char *str, t_flags *flags,va_list *args, bool prec);
+int		ft_printf(const char *input, ...);
 int		ft_check_flags(const char *str, va_list *args, int *count);
 int		flag_init(const char *str, t_flags* flags);
 int		ft_atoi(const char *str);
 int		ft_chrFnd(const char *str, char c);
-int		ft_printf(const char *input, ...);
 int		put_select(t_flags *flags, va_list *args);
-size_t	ft_strlen(const char *s);
 
 //	print funcs
 
 int		put_perc(t_flags *flags, va_list *args);
 int		put_c(t_flags *flags, va_list *args);
 int		put_s(t_flags *flags, va_list *args);
+int		put_i(t_flags *flags, va_list *args);
 
 #endif
