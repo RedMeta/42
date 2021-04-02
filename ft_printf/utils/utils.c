@@ -18,9 +18,9 @@ void	put_init(int (**func)(t_flags *, va_list *))
 	func[1] = &put_c;
 	func[2] = &put_s;
 	func[3] = &put_i;			
+	func[4] = &put_i;
+	func[5] = &put_i;
 /*	func[3] = &put_p;
-	func[4] = &put_d;
-	func[6] = &put_u;
 	func[7] = &put_x;
 	func[8] = &put_X; 				WORK IN PROGRESS */
 }

@@ -33,6 +33,8 @@ typedef	struct s_flags t_flags;
 
 size_t	ft_strlen(const char *s);
 char	*ft_itoa(int n);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*zeroes_str(int n);
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
 void	fnd_width_n_prec(const char *str, t_flags *flags,va_list *args, bool prec);
