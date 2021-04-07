@@ -38,23 +38,6 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*zeroes_str(int n)
-{
-	char	*res;
-	int		c;
-
-	if (!n)
-		return (NULL);
-	res = (char *)malloc(sizeof(char) * (n + 1));
-	if (!res)
-		return (NULL);
-	c = -1;
-	while (++c < n)
-		res[c] = '0';
-	res[c] = '\0';
-	return (res);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
