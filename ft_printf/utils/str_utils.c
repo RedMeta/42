@@ -12,20 +12,22 @@
 
 #include "../ft_printf.h"
 
-void	ft_putstr(char *s)
+size_t	ft_putstr(char *s)
 {
 	int i;
 
 	if (!s)
-		return ;
+		return (0);
 	i = -1;
 	while (s[++i])
 		ft_putchar(s[i]);
+	return	(i);
 }
 
-void	ft_putchar(char c)
+bool	ft_putchar(char c)
 {
 		write(1, &c, 1);
+		return (true);
 }
 
 size_t	ft_strlen(const char *s)

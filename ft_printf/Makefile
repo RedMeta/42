@@ -16,7 +16,7 @@ SRC		= $(wildcard ./utils/*.c) $(wildcard ./put/*.c) ft_printf.c
 
 OBJ		= $(SRC:.c=.o)
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g
 HEADER	= ft_printf.h
 CLEAN	= rm -f
 

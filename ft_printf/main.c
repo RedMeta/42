@@ -4,14 +4,14 @@ int	main()
 {
 	char *s;
 	int w, p;
-	int i;
+	unsigned i;
 
-	i = 1234;
+	i = 4294967295;
 	w = 12;
 	p = -1;
 	s = NULL;
-	int a = ft_printf("Test mio ###%12i###\n", 123);
-	int b = printf("Test suo ###%12i###\n", 123);
+	int a = ft_printf("Test mio ###%u###\n",i);
+	int b = printf("Test suo ###%u###\n", i);
 	printf("(%d // %d)", a, b); 
 	return 1;
 }
