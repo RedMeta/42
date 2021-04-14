@@ -12,73 +12,59 @@
 
 #include "../ft_printf.h"
 
-int	ft_atoi(const char *str)
+static int	get_return_len(long long n, long long base)
 {
-	int	nbr;
-	int	sign;
+	long long	len;
 
-	nbr = 0;
-	sign = 1;
-	while (*str == ' ' || (*str > 8 && *str < 14))
-		str++;
-	while (*str == '+' || *str == '-')
+	len = 0;
+	while (n >= base)
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		n /= base;
+		++len;
 	}
-	while (*str && (*str >= '0' && *str <= '9'))
-	{
-		if (nbr < 0)
-		{
-			if (sign == 1)
-				return (-1);
-			return (0);
-		}
-		nbr = nbr * 10 + *str - '0';
-		str++;
-	}
-	return (nbr * sign);
+	return (len + 1);
 }
 
-static int	ft_itoa_len(int n)
+static char	*itoa_base_loop(long long nb, long long base, char *str,
+long long len, bool up)
 {
-	long int	res;
+	unsigned char	c;
+	int				i;
 
-	res = 1;
-	while (n > 9 || n < -9)
+	i = len - 1;
+	
+	while (nb > 0)
 	{
-		n /= 10;
-		res++;
+		if (nb % base < 10)
+			c = nb % base + 48;
+		else
+			c = nb % base + (87 * !up + 55 * up);
+		str[i--] = c;
+		nb = nb / base;
 	}
-	return (res);
+	str[len] = '\0';
+	return (str);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa_base(int n, long long base, bool up)
 {
-	long int	n2;
-	char		*res;
-	int			c;
-	int			sig;
+	char		*str;
+	long long	nb;
+	long long	len;
 
-	c = 0;
-	sig = 1;
-	n2 = n;
+	if (n < 0)
+		nb = (long long)(n * -1);
+	else
+		nb = (long long)n;
+	len = (long long)get_return_len(nb, base);
+	if (n < 0)
+		str = (char *)malloc(sizeof(char) * (len + 1 + 1));
+	else
+		str = (char *)malloc(sizeof(char) * (len + 1));
 	if (n < 0)
 	{
-		n2 *= (sig *= -1);
-		c += 1;
+		str[0] = '-';
+		len++;
 	}
-	res = (char *)malloc(sizeof(char) * ((c += ft_itoa_len(n2)) + 1));
-	if (!res)
-		return (NULL);
-	res[c] = '\0';
-	while (--c != -1)
-	{
-		res[c] = (char)(48 + (n2 % 10));
-		n2 /= 10;
-	}
-	if (sig == -1)
-		res[0] = '-';
-	return (res);
+	return (itoa_base_loop(nb, base, str, len, up));
 }

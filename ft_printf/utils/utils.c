@@ -20,9 +20,9 @@ void	put_init(int (**func)(t_flags *, va_list *))
 	func[3] = &put_i;			
 	func[4] = &put_i;
 	func[5] = &put_i;
-/*	func[3] = &put_p;
 	func[7] = &put_x;
-	func[8] = &put_X; 				WORK IN PROGRESS */
+	func[8] = &put_X;
+/*	func[3] = &put_p; 				WORK IN PROGRESS */
 }
 
 int		put_select(t_flags *flags, va_list *args)
