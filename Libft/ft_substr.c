@@ -14,28 +14,29 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned int	i;
-	unsigned int	s_len;
-	char			*substr;
+	char	*sub;
+	size_t	sublen;
+	size_t	slen;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
-	s_len = ft_strlen(s);
-	if (s_len < start)
-	{
-		if (!(substr = malloc(sizeof(char) * 1)))
-			return (NULL);
-		substr[0] = '\0';
-		return (substr);
-	}
-	if (!(substr = malloc(sizeof(char) * (len + 1))))
+	slen = ft_strlen(s);
+	if (!len || start >= slen)
+		return (ft_strdup(""));
+	if (slen - start > len)
+		sublen = len;
+	else
+		sublen = slen - start;
+	sub = (char *)malloc((sublen + 1) * sizeof(char));
+	if (!sub)
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while (i < sublen && s[start + i])
 	{
-		substr[i] = s[start + i];
+		sub[i] = s[start + i];
 		i++;
 	}
-	substr[i] = '\0';
-	return (substr);
+	sub[i] = '\0';
+	return (sub);
 }

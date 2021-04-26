@@ -30,8 +30,8 @@ static int	conta_parole(char const *s, char c)
 
 static int	lung_parola(char const *s, char c)
 {
-	int i;
-	int lung;
+	int	i;
+	int	lung;
 
 	i = 0;
 	lung = 0;
@@ -45,7 +45,7 @@ static int	lung_parola(char const *s, char c)
 
 static void	*libera(char **splittato, int parola)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < parola)
@@ -69,7 +69,8 @@ static char	**riempi(char const *s, int parole, char c, char **splittato)
 		while (*s == c)
 			s++;
 		lung = lung_parola(s, c);
-		if (!(splittato[i] = (char *)malloc(sizeof(char) * (lung + 1))))
+		splittato[i] = (char *)malloc(sizeof(char) * (lung + 1));
+		if (!splittato[i])
 			return (libera(splittato, i));
 		j = 0;
 		while (j < lung)
@@ -80,7 +81,7 @@ static char	**riempi(char const *s, int parole, char c, char **splittato)
 	return (splittato);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**splittato;
 	int		num_parole;
@@ -88,7 +89,8 @@ char		**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	num_parole = conta_parole(s, c);
-	if (!(splittato = (char **)malloc(sizeof(char*) * (num_parole + 1))))
+	splittato = (char **)malloc(sizeof(char *) * (num_parole + 1));
+	if (!splittato)
 		return (NULL);
 	splittato = riempi(s, num_parole, c, splittato);
 	return (splittato);
