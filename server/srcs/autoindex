@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# check if nginx already started, if yes make changes and reload, 
+# if not (first attempt -> during building the container) just copy files
+rm -f /etc/nginx/sites-enabled/localhost_autoindx*
+if (( $(ps -ef | grep -v grep | grep nginx | wc -l) > 0 ))
+then
+    if [ "$1" = "off" ] ;
+    then ln -s /etc/nginx/sites-available/localhost_autoindx_off.conf /etc/nginx/sites-enabled ;
+    else ln -s /etc/nginx/sites-available/localhost_autoindx_on.conf /etc/nginx/sites-enabled ; fi
+service nginx reload
+else
+    if [ "$1" = "off" ] ;
+    then ln -s /etc/nginx/sites-available/localhost_autoindx_off.conf /etc/nginx/sites-enabled ;
+    else ln -s /etc/nginx/sites-available/localhost_autoindx_on.conf /etc/nginx/sites-enabled ; fi
+fi
