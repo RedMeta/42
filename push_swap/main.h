@@ -24,18 +24,36 @@ struct s_list
 {
 	struct s_list	*prev;
 	unsigned		num;
+	char			stack;
 	struct s_list	*next;
 };
 
 typedef struct s_list list;
 
 /*
-** Function prototypes
+** DLL function prototypes
 */
 
-list	*new_item(unsigned n);
-int		add_first(list *head, list *item);
+list	*get_first_elem_dll(list *item);
+list	*get_last_elem_dll(list *item);
+list	*new_item_dll(int n, char b);
+int	add_first_dll(list *head, list *item);
+int	add_last_dll(list *head, list *item);
+
+/*
+** MOVES function prototypes
+*/
+
+int	swap_top(list *item);
+int	first_to_last(list *item);
+int	last_to_first(list *item);
+int	first_elem_push(list *item1, list *item2);
 
 
+/*
+** SUPPORT function prototypes
+*/
+
+int	print_all_dll(list *item);
 #endif
 

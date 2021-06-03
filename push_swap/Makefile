@@ -26,7 +26,7 @@ CFLGS =	-Wall -Wextra -Werror $(HDRS) $(SRCS) -o $(NAME)
 
 all :	$(NAME)
 
-$(NAME):
+$(NAME) :
 
 
 
