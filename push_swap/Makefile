@@ -12,7 +12,8 @@
 
 NAME =	push_swap.out
 
-SRCS =	./main.c
+SRCS =	./main.c \
+	./list.c
 
 OBJS =	$(SRCS:.c=.o)
 
@@ -20,14 +21,27 @@ HDRS =	./main.h
 
 CC =	gcc
 
-CFLGS =	-Wall -Wextra -Werror $(HDRS) $(SRCS) -o $(NAME)
+CFLGS =	-Wall -Wextra -Werror
+
+CLEAN = rm -rf
 
 .PHONY = all
 
-all :	$(NAME)
+all: $(NAME)
 
-$(NAME) :
+$(OBJS): 
+	$(CC) $(CFLAGS) $(SRCS) -c
 
+$(NAME): $(OBJS) $(HDRS)
+	$(CC) $(CFLAGS) $(OBJS) -o $@
+
+clean:
+	$(CLEAN) $(OBJS)
+
+fclean: clean
+	$(CLEAN) $(NAME)
+
+re: fclean all
 
 
 

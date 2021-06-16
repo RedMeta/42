@@ -12,30 +12,11 @@
 
 #include "./main.h"
 
-int main()
+int main(int argc, char *argv[])
 {
-	int	n = 0;
-	list *stack1;
-	list *stack2;
-
-	stack1 = new_item_dll(0, 'a');
-	stack2 = new_item_dll(1, 'b');
-	while (n++ < 3)
+	if (argc > 1)
 	{
-		add_last_dll(stack1, new_item_dll(n * 3, 'a'));
-		add_last_dll(stack2, new_item_dll(n * -3, 'b'));
+		init(&argc, &argv);
 	}
-
-	n = print_all_dll(stack1);
-	printf("There are %d elements in stack '%c' ;\n", n, stack1->stack);
-	n = print_all_dll(stack2);
-	printf("There are %d elements in stack '%c' ;\n", n, stack2->stack);
-	stack1 = get_last_elem_dll(stack1);
-	first_elem_push(stack1, stack2);
-	printf("New stacks\n");
-	n = print_all_dll(stack1);
-	printf("There are %d elements in stack '%c' ;\n", n, stack1->stack);
-	n = print_all_dll(stack2);
-	printf("There are %d elements in stack '%c' ;\n", n, stack2->stack);
     return 0;
 }
