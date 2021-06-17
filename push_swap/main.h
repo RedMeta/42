@@ -17,7 +17,7 @@
 # include <stdio.h>
 
 /*
-** Struct declaration and typedef for the double linked list and the bucket
+** Struct declaration and typedef for the double linked list and the stack
 */
 
 struct s_list
@@ -29,15 +29,15 @@ struct s_list
 
 typedef struct s_list list;
 
-struct s_bucket
+struct s_stack
 {
 	struct s_list	*first_el;
 	struct s_list	*last_el;
 	char			id;
-	struct s_bucket	*next;
+	struct s_stack	*next;
 };
 
-typedef struct s_bucket	bucket;
+typedef struct s_stack	stack;
 
 /*
 ** DLL function prototypes
@@ -49,14 +49,15 @@ list	*new_item_dll(int n);
 int	add_first_dll(list *head, list *item);
 int	add_last_dll(list *head, list *item);
 
-/*
-** MOVES function prototypes
-*/
-
 int	swap_top(list *item);
 int	first_to_last(list *item);
 int	last_to_first(list *item);
 int	first_elem_push(list *item1, list *item2);
+
+/*
+** MOVES function prototypes
+*/
+
 
 /*
 ** SUPPORT function prototypes
@@ -64,12 +65,17 @@ int	first_elem_push(list *item1, list *item2);
 
 void	ft_putstr(char *s);
 void	ft_putnbr(int n);
-int	init(int *argc, char **argv[]);
+int	init(int argc, char **argv);
 int	print_all_dll(list *item);
 
+
 /*
-** BUCKET function prototypes
+** MINILIBFT function prototypes
 */
+
+char	**ft_split(char const *s, char c);
+int	ft_atoi(const char *str);
+int	ft_isdigit(int c);
 
 #endif
 
