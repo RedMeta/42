@@ -62,7 +62,7 @@ $(NAME): $(OBJS) $(HDRS)
 	$(CC) $(CFLAGS) $(OBJS) -o $@
 
 $(OBJS): $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) -c
+	-$(CC) $(CFLAGS) $(SRCS) -c
 	mv *.o $(OBJS_DIR)
 
 clean:

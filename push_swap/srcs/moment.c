@@ -15,7 +15,7 @@
 int	init(int argc, char **argv)
 {
 	int	c;
-	int	
+	int	total;
 	int	*input;
 	char **sep;
 
@@ -25,13 +25,13 @@ int	init(int argc, char **argv)
 		sep = ft_split(argv[1], ' ');
 		while (sep[c])
 			c++;
-		printf("---%d---\n", c);
-		input = (int *)malloc(sizeof(int) * c);
+		total = c;
+		printf("---%d---\n", total);
+		input = (int *)malloc(sizeof(int) * total);
 		while (--c > -1)
 			input[c] = ft_atoi(sep[c]);
-		c = 0;
-		while (input[c])
-			printf("---%d---\n", input[c++]);
+		while (++c < total)
+			printf("---%d---\n", input[c]);
 	}
 	return (0);
 }
