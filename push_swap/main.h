@@ -55,8 +55,13 @@ int	last_to_first(list *item);
 int	first_elem_push(list *item1, list *item2);
 
 /*
-** MOVES function prototypes
+** MOMENT function prototypes
 */
+
+int	init(int argc, char **argv);
+int	list_check(char **list, int x, int max);
+int	input_check(int *input, int size);
+int	list_to_arr(char **inp, int count, int **res);
 
 
 /*
@@ -65,7 +70,6 @@ int	first_elem_push(list *item1, list *item2);
 
 void	ft_putstr(char *s);
 void	ft_putnbr(int n);
-int	init(int argc, char **argv);
 int	print_all_dll(list *item);
 
 
@@ -76,6 +80,7 @@ int	print_all_dll(list *item);
 char	**ft_split(char const *s, char c);
 int	ft_atoi(const char *str);
 int	ft_isdigit(int c);
+int	ft_isspace(int c);
 
 #endif
 

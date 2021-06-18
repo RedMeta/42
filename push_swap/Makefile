@@ -32,7 +32,7 @@ SRCS_NAMES =	push_swap.c		\
 
 LIBFT_NAMES =	ft_split.c		\
 				ft_atoi.c		\
-				ft_isdigit.c		\
+				ft_isSpcDgt.c		\
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o) $(LIBFT_NAMES:.c=.o)
 
@@ -54,10 +54,13 @@ CC = gcc
 
 CFLGS = -Wall -Wextra -Werror
 
-CLEAN = rm -f
+CLEAN = rm -rf
 
 all: $(NAME)
 
+debug: $(SRCS) $(HDRS) fclean
+	$(CC) -ggdb $(CFLAGS) $(SRCS) -o $(NAME)
+	
 $(NAME): $(OBJS) $(HDRS)
 	$(CC) $(CFLAGS) $(OBJS) -o $@
 
@@ -69,7 +72,7 @@ clean:
 	$(CLEAN) $(OBJS)
 
 fclean: clean
-	$(CLEAN) $(NAME)
+	$(CLEAN) $(NAME) $(addprefix $(NAME), .dSYM)
 
 re: fclean all
 
