@@ -59,9 +59,9 @@ int	first_elem_push(list *item1, list *item2);
 */
 
 int	init(int argc, char **argv);
-int	list_check(char **list, int x, int max);
+int	list_check(char **list, int max);
 int	input_check(int *input, int size);
-int	list_to_arr(char **inp, int count, int **res);
+int	list_to_arr(char **inp, int (*res)[]);
 
 
 /*
@@ -77,10 +77,14 @@ int	print_all_dll(list *item);
 ** MINILIBFT function prototypes
 */
 
-char	**ft_split(char const *s, char c);
 int	ft_atoi(const char *str);
-int	ft_isdigit(int c);
-int	ft_isspace(int c);
+
+int	ft_isdigit(char c);
+int	ft_isspace(char c);
+int	ft_issign(char c);
+
+char	**ft_split(char const *s, char c);
+
 
 #endif
 

@@ -32,7 +32,7 @@ SRCS_NAMES =	push_swap.c		\
 
 LIBFT_NAMES =	ft_split.c		\
 				ft_atoi.c		\
-				ft_isSpcDgt.c		\
+				ft_check_char_type.c	\
 
 OBJS_NAMES = $(SRCS_NAMES:.c=.o) $(LIBFT_NAMES:.c=.o)
 
